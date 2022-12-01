@@ -19,7 +19,7 @@ class Book{
         this.fileName = fileName
     }
 }
-
+const errRespNF = {errcode: 404, errmsg: "not found"};
 app.use(express.json());
 
 app.post("/api/user/login",(req, res) => {
@@ -37,7 +37,7 @@ app.get("/api/books/:id",(req, res) => {
         res.json(books[ind]);
     }else{
         res.status(404);
-        res.json("404 страница не найдена");
+        res.json(errRespNF);
     }
 
 
@@ -70,7 +70,7 @@ app.put("/api/books/:id",(req, res) => {
         res.json(books[ind]);
     }else {
         res.status(404);
-        res.json("404 страница не найдена");
+        res.json(errRespNF);
     }
 });
 app.delete("/api/books/:id", (req, res) => {
@@ -82,7 +82,7 @@ app.delete("/api/books/:id", (req, res) => {
         res.json("Ok");
     }else{
         res.status(404);
-        res.json("404 страница не найдена")
+        res.json(errRespNF)
     }
 })
 
