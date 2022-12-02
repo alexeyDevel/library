@@ -1,92 +1,26 @@
 const express = require('express');
-const http = require('http');
-const { data } = require('./data');
-const {  v4: uuid } = require("uuid");
+const getBooks = require('./routes/getBooks');
+const postLogin = require('./routes/postLogin');
+const getBook = require('./routes/getBook');
+const postBook = require('./routes/postBooks');
+const putBooks = require('./routes/putBooks');
+const deleteBooks = require('./routes/deleteBooks');
+const getBookFile = require('./routes/getBookFile');
+const err404 = require('./middleware/error404');
+const {  v4: uuid } = require('uuid');
 const app = express();
-
-const store = {
-    books: data
-}
-const login = { id: 1, mail: "test@mail.ru" };
-class Book{
-    constructor( id = uuid(), title, description, authors, favorite, fileCover, fileName) {
-        this.id = id,
-        this.title = title,
-        this.description = description,
-        this.authors = authors,
-        this.favorite = favorite,
-        this.fileCover = fileCover,
-        this.fileName = fileName
-    }
-}
-const errRespNF = {errcode: 404, errmsg: "not found"};
-app.use(express.json());
-
-app.post("/api/user/login",(req, res) => {
-    res.json(login);
-});
-app.get("/api/books",(req, res) => {
-    const { books } = store;
-    res.json(books);
-});
-app.get("/api/books/:id",(req, res) => {
-    const { books } = store;
-    const { id } = req.params;
-    const ind = books.findIndex(item => item.id === id);
-    if(ind !== -1){
-        res.json(books[ind]);
-    }else{
-        res.status(404);
-        res.json(errRespNF);
-    }
-
-
-});
-app.post("/api/books",(req, res) => {
-    const { books } = store;
-    const { title, description, authors, favorite, fileCover, fileName } = req.body;
-    const newBook = new Book(title, description, authors, favorite, fileCover, fileName);
-    books.push(newBook);
-    res.status(201);
-    res.json(books);
-});
-app.put("/api/books/:id",(req, res) => {
-    const { books } = store;
-    const {
-        title, description, authors,
-        favorite, fileCover, fileName } = req.body;
-    const { id } = req.params;
-    const ind = books.findIndex(item => item.id === id);
-    if(ind !== -1){
-        books[ind] = {
-            ...books[ind],
-            title,
-            description,
-            authors,
-            favorite,
-            fileCover,
-            fileName
-        }
-        res.json(books[ind]);
-    }else {
-        res.status(404);
-        res.json(errRespNF);
-    }
-});
-app.delete("/api/books/:id", (req, res) => {
-    const { books } = store;
-    const { id } = req.params;
-    const ind = books.findIndex(item => item.id === id);
-    if(ind !== -1){
-        books.splice(ind, 1);
-        res.json("Ok");
-    }else{
-        res.status(404);
-        res.json(errRespNF)
-    }
-})
-
 const PORT = 3000;
+
+app.use(express.json());
+app.use('/', postLogin);
+app.use('/', getBooks);
+app.use('/', getBook);
+app.use('/', postBook);
+app.use('/', putBooks);
+app.use('/', deleteBooks);
+app.use('/', getBookFile);
+app.use(err404);
+
 app.listen(PORT);
 
 
