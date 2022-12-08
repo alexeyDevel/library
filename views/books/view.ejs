@@ -1,0 +1,31 @@
+<%- include('../layouts/layout-start', {title: title}) %>
+<%- include('../layouts/menu') %>
+
+<section class="title">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="mb-3 mt-4"><%= title %></h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= book.title %></h5>
+                        <p class="card-text"><%= book.description %></p>
+                        <p class="card-text"><%= book.authors %></p>
+                        <p class="card-text"><%= book.favorite %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<%- include('../layouts/layout-end') %>

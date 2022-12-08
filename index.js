@@ -1,15 +1,28 @@
 const express = require('express');
-const getBooks = require('./routes/getBooks');
-const postLogin = require('./routes/postLogin');
-const getBook = require('./routes/getBook');
-const postBook = require('./routes/postBooks');
-const putBooks = require('./routes/putBooks');
-const deleteBooks = require('./routes/deleteBooks');
-const getBookFile = require('./routes/getBookFile');
+const booksRoute = require('./routes/booksRoute');
+const currentBookRoute = require('./routes/currentBookRoute');
+const deleteBooksRoute = require('./routes/deleteBooksRoute');
+const updateBooksRoute = require('./routes/updateBooksRoute');
+const createBookRoute = require('./routes/createBookRoute');
+const getBooks = require('./routes/api/getBooks');
+const postLogin = require('./routes/api/postLogin');
+const getBook = require('./routes/api/getBook');
+const postBook = require('./routes/api/postBooks');
+const putBooks = require('./routes/api/putBooks');
+const deleteBooks = require('./routes/api/deleteBooks');
+const getBookFile = require('./routes/api/getBookFile');
 const err404 = require('./middleware/error404');
 const {  v4: uuid } = require('uuid');
 const app = express();
 const PORT = 3000;
+
+app.use(express.urlencoded());
+app.set("view engine", "ejs");
+app.use('/', booksRoute);
+app.use('/', currentBookRoute);
+app.use('/', deleteBooksRoute);
+app.use('/', updateBooksRoute);
+app.use('/', createBookRoute);
 
 app.use(express.json());
 app.use('/', postLogin);

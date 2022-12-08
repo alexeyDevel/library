@@ -1,10 +1,22 @@
 const express = require('express');
 const bookStore = require('../store/bookStore');
-const fileMulter = require('../middleware/file');
-const {errRespNF} = require("../constans");
+const fileMulter = require("../middleware/file");
 const router = express.Router();
 
-router.put("/api/books/:id", fileMulter.single('book'), (req, res) => {
+router.get("/books/update/:id", (req, res) => {
+    const { books } = bookStore;
+    const { id } = req.params;
+    const ind = books.findIndex(item => item.id === id);
+    if(ind !== -1){
+        res.render('books/update',{
+            title: 'Update',
+            book: books[ind]
+        });
+    }else {
+        res.redirect('/404');
+    }
+});
+router.post("/books/update/:id", fileMulter.single('book'), (req, res) => {
     const { books } = bookStore;
     let fileBook = "";
     if(req.file){
@@ -24,10 +36,9 @@ router.put("/api/books/:id", fileMulter.single('book'), (req, res) => {
             fileName,
             fileBook
         }
-        res.json(books[ind]);
+        res.redirect('/');
     }else {
-        res.status(404);
-        res.json(errRespNF);
+        res.redirect('/404');
     }
 });
 

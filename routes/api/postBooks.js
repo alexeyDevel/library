@@ -1,7 +1,7 @@
 const express = require('express');
-const Book = require('../components/book/Book');
-const fileMulter = require('../middleware/file');
-const bookStore = require('../store/bookStore');
+const Book = require('../../components/book/Book');
+const fileMulter = require('../../middleware/file');
+const bookStore = require('../../store/bookStore');
 const router = express.Router();
 
 router.post("/api/books", fileMulter.single('book'), (req, res) => {

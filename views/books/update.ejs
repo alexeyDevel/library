@@ -1,0 +1,19 @@
+<%- include('../layouts/layout-start', {title: title}) %>
+<%- include('../layouts/menu') %>
+
+<section class="title">
+    <div class="container">
+        <h1 class="mb-3 mt-4"><%= title %></h1>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <%- include('form', {book: book}) %>
+        </div>
+
+    </div>
+</section>
+
+
+<%- include('../layouts/layout-end') %>

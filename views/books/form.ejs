@@ -1,0 +1,125 @@
+<% if(book){ %>
+    <form method="post" action="/books/update/<%= book.id %>" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Title</label>
+            <input type="text" class="form-control" id="validationCustom01"
+                   name="title" value="<%= book.title %>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">description</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="description" value="<%= book.description %>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">authors</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="authors" value="<%= book.authors %>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom04" class="form-label">favorite</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="favorite" value="<%= book.favorite %>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom05" class="form-label">fileCover</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="fileCover" value="<%= book.fileCover %>" >
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom05" class="form-label">fileName</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="fileName" value="<%= book.fileName %>" >
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom05" class="form-label">fileBook</label>
+            <input type="file" class="form-control" id="validationCustom02"
+                   name="fileBook" value="<%= book.fileBook %>">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </form>
+<% }else { %>
+    <form method="post" action="/books/createnew" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">Title</label>
+            <input type="text" class="form-control" id="validationCustom01"
+                   name="title" value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom02" class="form-label">description</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="description" value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom03" class="form-label">authors</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="authors" value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom04" class="form-label">favorite</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="favorite" value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom05" class="form-label">fileCover</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="fileCover" value="" >
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom05" class="form-label">fileName</label>
+            <input type="text" class="form-control" id="validationCustom02"
+                   name="fileName" value="" >
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationCustom05" class="form-label">fileBook</label>
+            <input type="file" class="form-control" id="validationCustom02"
+                   name="fileBook" value="">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </form>
+<% } %>

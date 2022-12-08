@@ -1,8 +1,8 @@
 const express = require('express');
 const fs = require('fs');
 const router = express.Router();
-const bookStore = require('../store/bookStore');
-const { errRespNF, baseHref } = require("../constans");
+const bookStore = require('../../store/bookStore');
+const { errRespNF, baseHref } = require("../../constans");
 
 router.get("/api/books/:id/download",(req, res) => {
     const { books } = bookStore;
