@@ -14,7 +14,7 @@ const getBookFile = require('./routes/api/getBookFile');
 const err404 = require('./middleware/error404');
 const {  v4: uuid } = require('uuid');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 4000;
 
 app.use(express.urlencoded());
 app.set("view engine", "ejs");
