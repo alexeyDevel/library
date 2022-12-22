@@ -18,10 +18,13 @@ db.books.insertMany([
 
 db.books.find( { authors: "authors3" } );
 
-db.inventory.updateOne(
+db.books.updateOne(
    {_id: ObjectId('639e9be597833c9813754821')},
    {
      $description: "description4",
      $authors: "authors2"
    }
 )
+
+Username: admin
+password: Nk10sfjjx4Ycxm4z
