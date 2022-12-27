@@ -1,0 +1,26 @@
+<%- include('../layouts/layout-start', {title: title}) %>
+<section class="title">
+    <div class="container">
+        <h1 class="mb-3 mt-4"><%= title %></h1>
+    </div>
+</section>
+<section class="auth">
+    <div class="container">
+        <form class="profile">
+            <div class="row">
+                <div class="col-12  col-md-6">
+                    <label>First name</label>
+                    <input type="text" class="form-control" placeholder="First name" value="<%= user.userName %>">
+                </div>
+                <div class="col-12 col-md-6">
+                    <label>Display name</label>
+                    <input type="text" class="form-control" placeholder="Display name" value="<%= user.displayName %>">
+                </div>
+            </div>
+            <label>Email address</label>
+            <input type="email" placeholder="email" value="<%= user.email %>"/>
+        </form>
+    </div>
+</section>
+<a href="/api/user/logout">Выйти</a>
+<%- include('../layouts/layout-end') %>

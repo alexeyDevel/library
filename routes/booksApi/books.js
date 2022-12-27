@@ -7,7 +7,6 @@ const fileMulter = require("../../middleware/file");
 const Book = require("../../components/book/Book");
 const BookModel = require('../../models/bookModel');
 const router = express.Router();
-const login = { id: 1, mail: "test@mail.ru" };
 
 const COUNTER_URL = process.env.COUNTER_URL || "http://localhost:5000";
 
@@ -76,10 +75,6 @@ router.post("/books", fileMulter.single('book'), async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-});
-
-router.post("/user/login",(req, res) => {
-    res.json(login);
 });
 
 router.delete("/books/:id", async (req, res) => {
