@@ -36,54 +36,10 @@ router.get("/books/:id",(req, res) => {
     const { id } = req.params;
     const ind = books.findIndex(item => item.id === id);
     if(ind !== -1){
-        axios
-            .post(`${COUNTER_URL}/counter/${id}/incr`)
-            .then(resultIncr => {
-                if(resultIncr.data.message === 'OK'){
-                    axios
-                        .get(`${COUNTER_URL}/counter/${id}`)
-                        .then(result => {
-                            res.render('books/view',{
-                                title: 'View',
-                                book: books[ind],
-                                count: result.data.count
-                            })
-                        });
-                }else{
-                    res.json(resultIncr)
-                }
-            })
-            .catch(err => res.json({tit: "error", ...err}));
-
-    }else{
-        res.redirect('/404');
-    }
-});
-
-router.get("/books/:id",(req, res) => {
-    const { books } = bookStore;
-    const { id } = req.params;
-    const ind = books.findIndex(item => item.id === id);
-    if(ind !== -1){
-        axios
-            .post(`${COUNTER_URL}/counter/${id}/incr`)
-            .then(resultIncr => {
-                if(resultIncr.data.message === 'OK'){
-                    axios
-                        .get(`${COUNTER_URL}/counter/${id}`)
-                        .then(result => {
-                            res.render('books/view',{
-                                title: 'View',
-                                book: books[ind],
-                                count: result.data.count
-                            })
-                        });
-                }else{
-                    res.json(resultIncr)
-                }
-            })
-            .catch(err => res.json({tit: "error", ...err}));
-
+        res.render('books/view',{
+            title: 'View',
+            book: books[ind],
+        });
     }else{
         res.redirect('/404');
     }
