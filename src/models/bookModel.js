@@ -1,10 +1,10 @@
-const { model, mongoose } = require('mongoose');
-
-const bookSchema = mongoose.Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var mongoose_1 = require("mongoose");
+var bookSchema = new mongoose_1.Schema({
     // _id: mongoose.Schema.Types.ObjectId,
     id: {
         type: String,
-        
         required: true,
     },
     title: {
@@ -35,5 +35,4 @@ const bookSchema = mongoose.Schema({
         type: String,
     }
 });
-
-module.exports = model('Book', bookSchema); 
+exports.default = (0, mongoose_1.model)('Book', bookSchema);

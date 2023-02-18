@@ -1,10 +1,12 @@
-const users = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var users = [
     {
         id: "1",
         userName: 'user1',
         password: '123',
         displayName: 'Alexey',
-        email: 'user@mail.ru' ,
+        email: 'user@mail.ru',
         age: "24",
     },
     {
@@ -12,7 +14,7 @@ const users = [
         userName: 'user2',
         password: '123',
         displayName: 'Sasha',
-        email: 'user@mail.ru' ,
+        email: 'user@mail.ru',
         age: "22",
     },
     {
@@ -20,9 +22,8 @@ const users = [
         userName: 'user3',
         password: '123',
         displayName: 'Nikita',
-        email: 'user@mail.ru' ,
+        email: 'user@mail.ru',
         age: "28",
     }
-]
-
-module.exports = users;
+];
+exports.default = users;
