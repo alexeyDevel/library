@@ -1,19 +1,22 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var passport = require('passport');
+var passport_1 = __importDefault(require("passport"));
+var express_1 = __importDefault(require("express"));
+var router = express_1.default.Router();
+var users_1 = require("../db/users");
 var LocalStrategy = require('passport-local').Strategy;
-var express = require('express');
-var router = express.Router();
-var dbUsers = require('../db/users');
 function verify(username, password, done) {
-    dbUsers.findByUserName(username, function (err, user) {
+    (0, users_1.findByUserName)(username, function (err, user) {
         if (err) {
             return done(err);
         }
         if (!user) {
             return done(null, false);
         }
-        if (!dbUsers.verifyPassword(user, password)) {
+        if (!(0, users_1.verifyPassword)(user, password)) {
             return done(null, false);
         }
         return done(null, user);
@@ -23,12 +26,12 @@ var options = {
     usernameField: "username",
     passwordField: "password",
 };
-passport.use('local', new LocalStrategy(options, verify));
-passport.serializeUser(function (user, cb) {
+passport_1.default.use('local', new LocalStrategy(options, verify));
+passport_1.default.serializeUser(function (user, cb) {
     cb(null, user.id);
 });
-passport.deserializeUser(function (id, cb) {
-    dbUsers.findById(id, function (err, user) {
+passport_1.default.deserializeUser(function (id, cb) {
+    (0, users_1.findById)(id, function (err, user) {
         if (err) {
             return cb(err);
         }
@@ -60,12 +63,12 @@ router.get('/user/me', function (req, res, next) {
         user: req.user,
     });
 });
-router.post('/user/login', passport.authenticate('local', { failureRedirect: '/api/user/login' }), function (req, res) {
+router.post('/user/login', passport_1.default.authenticate('local', { failureRedirect: '/api/user/login' }), function (req, res) {
     res.redirect('/api/user/me');
 });
 router.post('/user/signup', function (req, res, next) {
     var _a = req.body, userName = _a.userName, displayName = _a.displayName, email = _a.email, age = _a.age, password = _a.password;
-    var result = dbUsers.createUser({ userName: userName, displayName: displayName, email: email, age: age, password: password });
+    var result = (0, users_1.createUser)({ userName: userName, displayName: displayName, email: email, age: age, password: password });
     if (result.user) {
         req.logIn(result.user, function (err) {
             if (err) {

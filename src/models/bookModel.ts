@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Document, Schema } from 'mongoose';
 import { IBook } from '../Interfaces/IBook';
 
 const bookSchema = new Schema<IBook>({
@@ -37,4 +37,4 @@ const bookSchema = new Schema<IBook>({
     }
 });
 
-export default model('Book', bookSchema); 
+export default model<IBook & Document>('Book', bookSchema); 
